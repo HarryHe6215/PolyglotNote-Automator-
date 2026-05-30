@@ -1,4 +1,1 @@
-__pycache__/
-*.docx
-.vscode/
-.idea/
+pip freeze > requirements.txt
