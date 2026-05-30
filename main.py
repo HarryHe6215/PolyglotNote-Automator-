@@ -3,6 +3,7 @@ import re
 import time
 import platform
 import threading
+import configparser
 import subprocess
 from datetime import datetime
 
@@ -22,6 +23,17 @@ from plyer import notification
 ESHELPER_EXE = r"C:\Program Files\EsHelper\eshelper.exe"
 # ============================================================
 
+
+# 创建配置解析器
+config = configparser.ConfigParser()
+
+# 读取配置文件 (如果不存在则创建默认值)
+if os.path.exists('config.ini'):
+    config.read('config.ini', encoding='utf-8')
+    ESHELPER_EXE = config.get('Settings', 'eshelper_path')
+else:
+    # 兜底方案：如果文件丢失，使用默认路径
+    ESHELPER_EXE = r"C:\Program Files\EsHelper\eshelper.exe"
 
 processing_lock = threading.Lock()
 
